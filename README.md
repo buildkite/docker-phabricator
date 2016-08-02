@@ -1,45 +1,32 @@
 docker-phabricator
 ==================
-A docker composition for Phabricator :
-- One container used by mysql, see https://github.com/yesnault/docker-phabricator/tree/master/database
-- One container used by apache (phabricator)
 
-Run with image from hub.docker.com
-----
-Run a mysql container :
-```
-docker run --name databasePhabricator yesnault/docker-phabricator-mysql
-```
+## Setup
 
-Run phabricator :
-```
-docker run -p 8081:80 --link databasePhabricator:database yesnault/docker-phabricator 
-```
-Go to http://localhost:8081
-
-Running on OSX
--------
-
-Requires
-
-  * boot2docker
-
-  * docker
-
-From a terminal, execute:
-
-```
+```bash
 docker-compose up
+echo '8081' > '~/.pow/phabricator'
+open http://phabricator.dev/
 ```
 
-and then execute
+## Developing Phabricator
 
-```
-boot2docker ip
+To run your own version, make sure phabricator is checked out:
+
+```bash
+git checkout git@github.com:buildkite/phabricator.git
 ```
 
-Then open up a browser and navigate to
+And then run the `dev` version of the docker-compose config:
 
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 ```
-http://{boot2docker ip}:8081
+
+This will link in the local Phabricator source as a volume, so you can easily edit + test changes to Phabricator.
+
+To start a bash prompt:
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml run phabricator bash
 ```

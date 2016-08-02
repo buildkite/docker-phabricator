@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+    
+  phabricator:
+    volumes:
+      - "./phabricator:/opt/phabricator"
+    environment:
+      LOCAL_JSON: '{"storage.default-namespace": "default", "mysql.host": "database", "mysql.user": "admin", "mysql.pass": "admin" }'

@@ -1,15 +1,11 @@
+version: '2'
 
-#
-# Optional Volumes:
-#  - /opt/phabricator/conf - configuration
-#  - /var/repo - code repos
-#
-#
-phabricator:
+services:
+
+  phabricator:
     build: .
     links: ['database']
     ports: ['8081:80']
 
-
-database:
+  database:
     build: database/
