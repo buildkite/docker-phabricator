@@ -1,6 +1,10 @@
 docker-phabricator
 ==================
 
+A local Dockerized version of Phabricator for developing and testing the Buildkite integration, and developing new changes for our [buildkite-patches branch of Phabricator](https://github.com/buildkite/phabricator/tree/buildkite-support).
+
+Originally forked from the now unmaintained https://github.com/yesnault/docker-phabricator.
+
 ## Setup
 
 ```bash
