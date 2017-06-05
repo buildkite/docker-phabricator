@@ -6,4 +6,4 @@ services:
     volumes:
       - "./phabricator:/opt/phabricator"
     environment:
-      LOCAL_JSON: '{"storage.default-namespace": "default", "mysql.host": "database", "mysql.user": "admin", "mysql.pass": "admin" }'
+      LOCAL_JSON: '{"storage.default-namespace": "default", "mysql.host": "database", "mysql.user": "admin", "mysql.pass": "admin", "phabricator.base-uri": "http://phabricator.dev/", "diffusion.allow-http-auth": true, "environment.append-paths": ["/usr/lib/git-core"] }'

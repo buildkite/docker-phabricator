@@ -59,9 +59,9 @@ RUN     sed -e 's/post_max_size = 8M/post_max_size = 32M/' \
           -e 's/upload_max_filesize = 2M/upload_max_filesize = 32M/' \
           -e 's/;opcache.validate_timestamps=1/opcache.validate_timestamps=0/' \
           -i /etc/php5/apache2/php.ini
-RUN     ln -s /usr/lib/git-core/git-http-backend /opt/phabricator/support/bin
-RUN     /opt/phabricator/bin/config set phd.user "root"
-RUN     echo "www-data ALL=(ALL) SETENV: NOPASSWD: /opt/phabricator/support/bin/git-http-backend" >> /etc/sudoers
+RUN     /opt/phabricator/bin/config set phd.user "root" \
+        && /opt/phabricator/bin/config set environment.append-paths '["/usr/lib/git-core"]'
+RUN     echo "www-data ALL=(ALL) SETENV: NOPASSWD: /usr/lib/git-core/git-http-backend" >> /etc/sudoers
 
 EXPOSE  80
 ADD     entrypoint.sh /entrypoint.sh
