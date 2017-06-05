@@ -55,9 +55,9 @@ RUN     ln -s /etc/apache2/sites-available/phabricator.conf \
 # Setup phabricator
 RUN     mkdir -p /opt/phabricator/conf/local /var/repo
 ADD     local.json /opt/phabricator/conf/local/local.json
-RUN     sed -e 's/post_max_size = 8M/post_max_size = 32M/' \
-          -e 's/upload_max_filesize = 2M/upload_max_filesize = 32M/' \
-          -e 's/;opcache.validate_timestamps=1/opcache.validate_timestamps=0/' \
+RUN     sed -e 's/post_max_size =.*/post_max_size = 32M/' \
+          -e 's/upload_max_filesize =.*/upload_max_filesize = 32M/' \
+          -e 's/;opcache.validate_timestamps=.*/opcache.validate_timestamps=0/' \
           -i /etc/php5/apache2/php.ini
 RUN     /opt/phabricator/bin/config set phd.user "root" \
         && /opt/phabricator/bin/config set environment.append-paths '["/usr/lib/git-core"]'
